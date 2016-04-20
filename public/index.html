@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link  href="lib/jqueryui/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+        <script src="lib/js.cookie.js"></script>
+        <script src="lib/jquery/jquery-1.12.2.js"></script>
+        <script src="lib/jquery.getparameter.js"></script>
+        <script src="lib/jqueryui/jquery-ui.js"></script>
+
+        <title>Huga</title>
+        <link rel="shortcut icon" href="icons/advanced-circuit.png" />
+        <style type="text/css">
+        </style>
+        <script>
+            $(function() {
+            });
+            $(function() {
+                //console.log(Object.keys(test));
+                $.datepicker.setDefaults($.datepicker.regional['ja']);
+                $('#date1').datepicker({ dateFormat: 'yy/mm/dd' }).datepicker('setDate','today');;
+                $('#date2').datepicker({ dateFormat: 'yy/mm/dd' }).datepicker('setDate','-1y-1m');;
+                $('#date3').datepicker({ dateFormat: 'yy/mm/dd' }).datepicker('setDate','-1y-1d');;
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Hoge</h1>
+        <div id="main">
+<form method="POST" action="api/main">
+  <label>その１
+  </label>
+            <input type="text" id="date1" name="today" size="10" />
+  <label>その２
+  </label>
+            <input type="text" id="date2" name="first" size="10" />
+  <label>その３
+  </label>
+            <input type="text" id="date3" name="last" size="10" />
+ <button type="submit" name="action" value="send">集計</button>
+</form>
+
+        </div>
+        <div id="status">
+<form method="GET" action="">
+ <button type="submit" name="action" formmethod='get' formaction='terminate' value="abort">中止</button>
+</form>
+        </div>
+    </body>
+</html>
