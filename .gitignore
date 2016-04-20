@@ -1,0 +1,17 @@
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+/vendor/
+
+.project
+*.txt
+debug_*
+
+.rbenv_version
+Gemfile.lock
+password.bat
