@@ -1,0 +1,1 @@
+# db_singleapp_template
