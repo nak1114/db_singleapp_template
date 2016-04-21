@@ -1,8 +1,9 @@
 @echo off
 setlocal
-call password.bat
 set RACK_ENV=production
-rem cd %~dp0\test
-rem %~dp0\test\vendor\2.1.8\bin\ruby ru.rb
-rem cd %~dp0
+set BROWSER="C:\Program Files (x86)\Internet Explorer\iexplore.exe "
+set DB_PASSWORD=xxxxxx
+
+cd %~dp0
+call ..\password.bat
 .\vendor\2.1.8\bin\ruby ru.rb

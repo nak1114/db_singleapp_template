@@ -10,7 +10,7 @@ task :default => :spec
 
 desc "exec"
 task :exec do
-  sh "ruby test.rb"
+  sh "ruby ru.rb"
 end
 
 desc "bundle"
