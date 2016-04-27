@@ -6,4 +6,4 @@ set DB_PASSWORD=xxxxxx
 
 cd %~dp0
 call ..\password.bat
-.\vendor\2.1.8\bin\ruby ru.rb
+.\vendor\ruby\bin\ruby ru.rb

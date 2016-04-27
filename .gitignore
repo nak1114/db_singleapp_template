@@ -23,4 +23,8 @@ debug_*
 !start.sh
 !env.bat
 !env.sh
+!/public/
+!/config/
+!/views/
+!/spec/
 

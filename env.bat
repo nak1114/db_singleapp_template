@@ -1,1 +1,1 @@
-set path=%~dp0\vendor\2.1.8\bin
+set path=%~dp0\vendor\ruby\bin

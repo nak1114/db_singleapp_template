@@ -9,14 +9,15 @@
 		<script src="lib/jquery/jquery-1.12.2.js"></script>
 		<script src="lib/jquery.getparameter.js"></script>
 		<script src="lib/jqueryui/jquery-ui.js"></script>
+		<script src="lib/d3/d3.js"></script>
+		<script src="js/dbapp-stack-h.js"></script>
+		<script src="js/dbapp-stack.js"></script>
 
 		<title>Huga</title>
 		<link rel="shortcut icon" href="icons/advanced-circuit.png" />
 		<style type="text/css">
 		</style>
 		<script>
-			$(function() {
-			});
 			$(function() {
 				//console.log(Object.keys(test));
 				$.datepicker.setDefaults($.datepicker.regional['ja']);
@@ -37,6 +38,11 @@
 					});
 					return false;
 				});
+				//var test = new DBapp.stack_h('#result');
+				//var test2 = new DBapp.stack('#result');
+			});
+			$(function() {
+				
 			});
 		</script>
 	</head>
@@ -56,6 +62,7 @@
 			</form>
 
 		</div>
+		<div id='result'></div>
 		<div>
 			<form method="get" action="">
 				<button type="submit"  id="abort" name="action" value="abort" >

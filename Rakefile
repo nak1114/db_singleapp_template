@@ -10,7 +10,7 @@ task :default => :spec
 
 desc "exec"
 task :exec do
-  sh "ruby ru.rb"
+  sh "bundle exec ruby ru.rb"
 end
 
 desc "bundle"
@@ -23,4 +23,3 @@ task :init do
   sh "bundle install --path vendor/bundle --binstubs=vendor/bin"
 end
 end
-
