@@ -20,6 +20,7 @@ debug_*
 !config.ru
 !app.rb
 !start.bat
+!start_develop.bat
 !start.sh
 !env.bat
 !env.sh
