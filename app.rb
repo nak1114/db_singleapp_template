@@ -22,11 +22,13 @@ end
 post '/api/graph' do
   request.body.rewind  # 既に読まれているときのため
   data = JSON.parse request.body.read
+  Dir.mkdir 'tmp'
   data.each do |v|
-    p v
-    open(v["name"],'wt') do |f|
+    fname='.\\tmp\\' + v["name"]
+    open(fname,'wt') do |f|
       f.write v["content"]
     end
+    `#{ENV['CONVERTER']} #{fname} -M #{fname}.emf`
   end
   {ret:'OK!'}.to_json
 end
