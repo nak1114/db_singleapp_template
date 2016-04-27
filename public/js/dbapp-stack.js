@@ -1,14 +1,16 @@
 var DBapp = DBapp || {};
-DBapp.stack = function(node,datum,opt) {
+DBapp.stack = function() {
 	this.svg=undefined;
 	this.str=undefined;
-	this.draw(node,datum||this.sample_data,opt||this.option);
 };
 DBapp.stack.prototype = {
 	remove : function(){
-		if(this.svg){this.svg.remove();}
+		if(this.svg){this.svg.remove();return this;}
 	},
-    _css : ( function() {
+    set_css   : function(c){this.css=c;return this;},
+    set_option: function(o){this.option=o;return this;},
+    set_data  : function(d){this.data=d;return this;},
+    css : ( function() {
             return (function () {/*
 		.axis path, .axis line {
 		    fill: none;
@@ -16,8 +18,14 @@ DBapp.stack.prototype = {
 		    shape-rendering: crispEdges;
 		}
 		.axis text {
-		    font-family: sans-serif;
+		    font-family: Meiryo;
 		    font-size: 11px;
+		}
+		.legend text {
+		    font-family: Meiryo;
+		}
+		.dataset text {
+		    font-family: Meiryo;
 		}
             */}).toString().match(/\/\*\s*\n\s*([^]*)\r?\n\s*\*\//)[1].replace(/\r?\n\s*/g, '');
     }()),
@@ -31,7 +39,7 @@ DBapp.stack.prototype = {
     		margins:{top: 8,left: 8, right: 8, bottom: 8},
     	},
     },
-    sample_data: [{
+    data: [{
 	        data: [{
 	            name: 'ほげ',
 	            count: 123
@@ -58,6 +66,8 @@ DBapp.stack.prototype = {
 	    }
     ],
     draw : function(node,datum,opt) {
+        var datum=datum||this.data;
+        var opt=opt||this.option;
     	var translate=function(s,x,y){s.attr('transform', 'translate(' + x + ',' + y + ')');};
 		var margins = opt.margins;
 	    var colors = d3.scale.category10();
@@ -95,6 +105,7 @@ DBapp.stack.prototype = {
 	        .data(dataset)
 	        .enter()
 	        .append('g')
+	        .attr('class', 'dataset')
 	        .style('fill', function (d, i) {
 	        return colors(i);
 	    });
@@ -177,11 +188,19 @@ DBapp.stack.prototype = {
 	    root.append('g')
 	        .attr('class', 'axis')
 	        .attr('transform', 'translate(0,' + height + ')')
-	        .call(xAxis);
+	        .call(xAxis)
+	        .selectAll('text')
+	        .attr('dy', 0)
+	        .attr('y', 16)
+	        ;
 
 		root.append('g')
 		    .attr('class', 'axis')
-		    .call(yAxis);
+		    .call(yAxis)
+	        .selectAll('text')
+	        .attr('dy', 0)
+	        .attr('y', 4)
+	        ;
 
 		legend
 	        .attr('transform', 'translate('+(width)+',0)')
@@ -191,7 +210,8 @@ DBapp.stack.prototype = {
 		    ;
 
 	    this.svg=svg;
-	    this.str=(new XMLSerializer()).serializeToString(svg[0][0]);;
+	    this.str=(new XMLSerializer()).serializeToString(svg[0][0]);
+	    return this;
    },
 };
 

@@ -19,6 +19,18 @@ get '/' do
   'hellow'
 end
 
+post '/api/graph' do
+  request.body.rewind  # 既に読まれているときのため
+  data = JSON.parse request.body.read
+  data.each do |v|
+    p v
+    open(v["name"],'wt') do |f|
+      f.write v["content"]
+    end
+  end
+  {ret:'OK!'}.to_json
+end
+
 post '/api/main' do
 	p settings.environment
 	@item= Issue.select("name, price, created_at")

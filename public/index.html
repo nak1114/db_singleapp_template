@@ -38,8 +38,31 @@
 					});
 					return false;
 				});
-				//var test = new DBapp.stack_h('#result');
-				//var test2 = new DBapp.stack('#result');
+				$('#graph').on('click', function() {
+					var test = (new DBapp.stack_h()).draw('#result');
+					var test2 = (new DBapp.stack()).draw('#result');
+					console.log(test);
+					var data=[
+						{name:'test1.svg',
+						content:test.str},
+						{name:'test2.svg',
+						content:test2.str},
+					];
+				
+					$.ajax({
+						type:'post',
+						url:'api/graph',
+				        data:JSON.stringify(data),
+				        contentType: 'application/json',
+				        dataType: "json",
+					}).done(function(data){
+						console.log('done', data);
+						
+					}).always(function() {
+						console.log('test', this);
+					});
+					return false;
+				});
 			});
 			$(function() {
 				
@@ -67,6 +90,13 @@
 			<form method="get" action="">
 				<button type="submit"  id="abort" name="action" value="abort" >
 					中止
+				</button>
+			</form>
+		</div>
+		<div>
+			<form method="post" action="">
+				<button type="submit"  id="graph" name="action" value="graph" >
+					グラフ
 				</button>
 			</form>
 		</div>
